@@ -272,6 +272,10 @@ freshflow/
 │   └── main.jsx
 ├── docs/
 │   ├── prompt-log/
+│   │   ├── prompt-po.md
+│   │   ├── prompt-ux.md
+│   │   ├── prompt-tech.md
+│   │   ├── prompt-qa.md
 │   │   └── prompt-ai-builder.md
 │   └── assets/
 ├── .env.example
