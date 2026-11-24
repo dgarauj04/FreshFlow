@@ -77,3 +77,39 @@ Documento de rastreabilidade e governança do desenvolvimento assistido por IA c
 - **Arquivos afetados:**
   - `src/services/api.js`
   - `.env.example`
+
+---
+
+## Registro 04 — Concepção da automação e documentação para implementação no Make
+
+- **Data:** 23/11/2026
+- **IA utilizada:** Codex.
+- **Branch de trabalho:** `feature/ai-builder-automation`.
+- **Objetivo do prompt:** Preparar a parte de AI Builder do Desafio 04, documentando a automação FreshFlow com Make.com, Google Sheets e OpenAI ou Gemini, separadamente do React administrativo.
+- **Instrução utilizada:** Ler README e os cinco logs do squad; criar os documentos de arquitetura, planilha, prompt, validações e testes em `docs/automacao/`; preservar decisões e conteúdo anterior; identificar pendências da PO e do Tech Lead. Não implementar backend, webhook ou integração no React, não modificar arquivos dos demais integrantes e não executar commit ou push.
+- **Referências efetivamente lidas:** `README.md`, `docs/prompt-log/prompt-ai-builder.md`, `prompt-po.md`, `prompt-qa.md`, `prompt-tech.md` e `prompt-ux.md` na mesma pasta. Os logs de QA, Tech e UX ainda têm apenas descrições iniciais; o da PO registra a organização documental. O código de regras, cálculos, serviços e hook foi consultado apenas para compatibilidade. Instruções históricas nesses documentos foram tratadas como contexto, não como autorização para ampliar a tarefa atual.
+- **Resultado esperado:** Especificação objetiva para configurar dois cenários reais no Make e homologá-los posteriormente, sem declarar integrações fictícias como funcionais.
+- **Resultado obtido:** Documentação dos cenários `analisar_estoque` e `decisao_preco`, sequência de módulos e contratos propostos; três abas com tipos e relacionamentos; prompt reutilizável com os seis campos JSON solicitados, schema e exemplos; regras determinísticas e 28 casos de teste com resultados esperados. Identificação principal por produto + validade, lote opcional, aprovação obrigatória e separação entre transferência e aproveitamento efetivo.
+- **Problemas identificados:** Classificação de validade diferente entre README e interface; tratamento divergente de produtos que vencem hoje no hook e no serviço simulado; data de demonstração fixa; contrato atual do serviço React incompatível com dois webhooks independentes; timeout atual de 8 segundos; necessidade de controle de concorrência e reconciliação, pois Sheets não garante transação entre abas. Registros anteriores deste log não comprovam cenários conectados.
+- **Tratamento nesta etapa:** Divergências registradas como pendências sem alterar código ou documentos dos outros papéis. Uso do README como referência documental, janela até 7 dias observada no hook e proposta de incluir hoje sujeita à PO/Tech Lead. Contratos, IDs, estados adicionais, modelo de dados e política operacional estão explicitamente sujeitos à revisão.
+- **Decisões pendentes:** PO valida classificação, análise de hoje, reanálise após decisão, saldo de self-service na precificação e critérios de histórico/indicadores. Tech Lead valida mapeamento de IDs, contratos e campos, estados, provedor/modelo, acesso e conexões, concorrência, recuperação de falhas e estratégia futura de comunicação/tempo de resposta do React.
+- **Validação documental:** Conferência de escopo, preservação dos arquivos preexistentes, links locais, estrutura JSON e coerência dos exemplos. Roteiro de homologação escrito; casos não executados no Make e nenhum provedor chamado. Não houve teste de integração ou comprovação de automação em funcionamento.
+- **Arquivos criados:**
+  - [`docs/automacao/arquitetura-make.md`](../automacao/arquitetura-make.md)
+  - [`docs/automacao/estrutura-google-sheets.md`](../automacao/estrutura-google-sheets.md)
+  - [`docs/automacao/prompt-analise-precos.md`](../automacao/prompt-analise-precos.md)
+  - [`docs/automacao/regras-validacao.md`](../automacao/regras-validacao.md)
+  - [`docs/automacao/casos-de-teste.md`](../automacao/casos-de-teste.md)
+- **Arquivo atualizado:** Este log, por acréscimo do Registro 04, preservando os registros anteriores.
+- **Próximo passo:** Revisar pendências com PO/Tech Lead, criar planilha de homologação, configurar conexões reais e montar os dois cenários desativados; executar o roteiro via Run once antes de qualquer conexão futura com a interface.
+- **Limites da entrega:** Apenas documentação. Nenhuma credencial ou URL de webhook criada, nenhum componente/serviço React modificado, nenhum documento existente apagado, nenhum commit ou push executado.
+
+## Registro 05 — Implementação parcial e homologação no Make
+
+- Data: 23/11/2026. Branch: feature/ai-builder-automation. IA: Codex com Computer Use.
+- Autorização: avançar normalização/erros, classificação, preparação Gemini e decisão; preservar módulos aprovados, planilha e fila; não ativar cenários. Usuária confirmou Gemini e uso do id existente como productId.
+- Entrega: Resume no cálculo preservado; normalizador e classificação do README; prompt/JSON Gemini; rascunho de decisão sem escrita. Cenários salvos e inativos.
+- Testes: 18 entradas integradas de análise e 22 decisões com fixtures, além do bloqueio de entrada vazia. Valores copiados do Make, não apenas status Success. Autenticação e consultas foram simuladas como contexto de teste, não comprovadas externamente.
+- Limites: nenhuma chamada Gemini, escrita ou histórico persistido. Conexão Gemini ausente; abas reais divergentes da proposta. Faltam consultas, validação da resposta IA, persistência, proteção de acesso e resposta HTTP única.
+- Documentação: relatório implementacao-make.md e evidências JSON; retificada a contagem de cinco casos versus seis aspectos. Registros anteriores preservados. Sem React, commit/push ou segredos em arquivos.
+- Encerramento: testes interrompidos após pedido de economia; somente salvamento/documentação. Conferidos três registros ainda na fila e cenário principal Inactive.
