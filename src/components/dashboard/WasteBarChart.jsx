@@ -51,7 +51,7 @@ export default function WasteBarChart() {
         </div>
 
         {/* Colunas de barras */}
-        <div className="relative z-10 flex items-end justify-between pl-9 pr-2 h-48 gap-2 pt-2">
+        <div className="relative z-10 flex items-end justify-between pl-9 pr-2 h-48 gap-2 pt-2 overflow-x-auto md:overflow-visible">
           {DAILY_WASTE_DATA.map((item, idx) => {
             const recHeightPercent = Math.min(100, (item.recuperado / maxVal) * 100);
             const descHeightPercent = Math.min(100, (item.descartado / maxVal) * 100);
@@ -59,7 +59,7 @@ export default function WasteBarChart() {
             return (
               <div key={idx} className="flex-1 flex flex-col items-center h-full justify-end group relative">
                 {/* Tooltip ao passar o mouse */}
-                <div className="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-[#184E77] text-white text-[11px] rounded-lg py-1 px-2 pointer-events-none shadow-md whitespace-nowrap z-20">
+                <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity bg-[#184E77] text-white text-[11px] rounded-lg py-1 px-2 pointer-events-none shadow-md whitespace-nowrap z-20 -top-[0.6rem] md:-top-12">
                   <span className="font-semibold block">{item.dia}</span>
                   <span>Recuperado: {formatCurrency(item.recuperado)}</span>
                   <span className="block text-[#FCA5A5]">Descarte: {formatCurrency(item.descartado)}</span>
@@ -84,7 +84,7 @@ export default function WasteBarChart() {
                   {/* Barra de Descartado */}
                   <div
                     style={{ height: `${descHeightPercent}%` }}
-                    className="w-2 rounded-t-sm bg-[#FCA5A5] group-hover:bg-[#F87171] transition-all duration-500"
+                    className="w-6 rounded-t-sm bg-[#FCA5A5] group-hover:bg-[#F87171] transition-all duration-500"
                   />
                 </div>
 

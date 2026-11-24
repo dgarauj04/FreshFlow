@@ -29,10 +29,10 @@ Documento de rastreabilidade e governança do desenvolvimento assistido por IA c
   - Modais: `LotModal.jsx` (fiel à Imagem 1 com 3 seções, stepper e atalhos), `DestinationModal.jsx` (bloqueio de vencidos para venda e liberação exclusiva para descarte), `CustomPriceModal.jsx` (sincronização bidirecional entre preço e desconto %)
   - Movimentações: `MovementsTable.jsx` com exportação CSV e indicadores de auditoria
   - Vitrine: `VitrineGrid.jsx` (fiel à Imagem 2 com visualização interna, selos de economia e filtros)
-- **Resultado esperado:** Interface fluida, semântica, responsiva e com feedback visual imediato para Dona Célia.
+- **Resultado esperado:** Interface fluida, semântica, responsiva e com feedback visual imediato para Célia.
 - **Resultado obtido:** Todos os componentes criados e integrados com hook centralizado `useInventory.js`.
 - **Problemas identificados:** Necessidade de garantir que produtos vencidos fiquem estritamente bloqueados para qualquer ação diferente de descarte.
-- **Correções realizadas:** Função `isActionAllowed` centralizada em `src/utils/rules.js` bloqueando venda normal, venda promocional, doação e self-service para lotes com dias restantes menores que zero.
+- **Correções realizadas:** Função `isActionAllowed` centralizada em `src/utils/rules.js` bloqueando venda normal, venda promocional e self-service para lotes com dias restantes menores que zero.
 - **Arquivos afetados:**
   - `src/index.css`
   - `src/utils/formatters.js`
