@@ -54,11 +54,6 @@ export default function MovementsTable({ movements }) {
       bg: 'bg-[#DCFCE7]',
       text: 'text-[#166534]',
     },
-    doacao: {
-      label: 'Doação',
-      bg: 'bg-[#E0F2FE]',
-      text: 'text-[#168AAD]',
-    },
     descarte: {
       label: 'Descartado',
       bg: 'bg-[#FEE2E2]',
@@ -154,7 +149,6 @@ export default function MovementsTable({ movements }) {
             <option value="venda_normal">Venda normal</option>
             <option value="venda_promocional">Venda promocional</option>
             <option value="utilizacao_self_service">Self-Service</option>
-            <option value="doacao">Doação</option>
             <option value="descarte">Descarte</option>
           </select>
         </div>
@@ -227,7 +221,7 @@ export default function MovementsTable({ movements }) {
 
                       {/* Operador */}
                       <td className="py-3.5 px-3.5 font-medium text-[#184E77]">
-                        {m.responsavel || 'Dona Célia'}
+                        {m.responsavel || 'Célia'}
                       </td>
 
                       {/* Impacto */}

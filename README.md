@@ -2,7 +2,7 @@
 
 # 🌿 FreshFlow
 
-### *Inteligência que movimenta, tecnologia que evita desperdícios.*
+### _Inteligência que movimenta, tecnologia que evita desperdícios._
 
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?style=flat-square&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -36,13 +36,13 @@
 
 A rede **Carrefort** possui **40 lojas** e enfrenta perdas expressivas de produtos perecíveis devido à ausência de um sistema eficiente de monitoramento de validade.
 
-| Situação Atual | Impacto |
-|---|---|
-| Controle feito manualmente com planilhas impressas | Alto risco de erro humano e retrabalho |
-| Sem sistema de alerta de vencimento | Produtos expiram sem ação preventiva |
-| Sem rastreabilidade de movimentações | Impossível medir desperdício real |
-| Operação com estoque enxuto | Gôndolas = estoque → qualquer perda é crítica |
-| Sem suporte à decisão de preço | Precificação promocional é manual e tardia |
+| Situação Atual                                     | Impacto                                       |
+| -------------------------------------------------- | --------------------------------------------- |
+| Controle feito manualmente com planilhas impressas | Alto risco de erro humano e retrabalho        |
+| Sem sistema de alerta de vencimento                | Produtos expiram sem ação preventiva          |
+| Sem rastreabilidade de movimentações               | Impossível medir desperdício real             |
+| Operação com estoque enxuto                        | Gôndolas = estoque → qualquer perda é crítica |
+| Sem suporte à decisão de preço                     | Precificação promocional é manual e tardia    |
 
 > A operação trabalha com estoque enxuto, onde o próprio salão de vendas e as gôndolas funcionam como área de armazenamento e exposição, sem necessidade de um armazém separado.
 
@@ -52,19 +52,20 @@ A rede **Carrefort** possui **40 lojas** e enfrenta perdas expressivas de produt
 
 <div align="center">
 
-### Dona Célia — Gerente de Setor
+### Célia — Gerente de Setor
 
 </div>
 
-Dona Célia é a responsável pelo setor de perecíveis. Ela não tem tempo para sistemas complexos e precisa tomar decisões rápidas durante a operação do dia a dia.
+Célia é a responsável pelo setor de perecíveis. Ela não tem tempo para sistemas complexos e precisa tomar decisões rápidas durante a operação do dia a dia.
 
 **Ela precisa:**
+
 - 📦 Acompanhar produtos e lotes em exposição
 - ⏰ Identificar produtos próximos do vencimento
 - 🔝 Visualizar prioridades de acordo com a validade (FEFO)
 - 🤖 Receber sugestões inteligentes de preços promocionais
 - ✅ Aprovar, rejeitar ou personalizar ofertas sugeridas pela IA
-- 📝 Registrar o destino dos produtos (venda, doação, descarte, self-service)
+- 📝 Registrar o destino dos produtos (venda, descarte, self-service)
 - 📊 Acompanhar indicadores de desperdício evitado
 
 ---
@@ -95,7 +96,7 @@ Produto em Exposição
    (Aceitar / Rejeitar / Personalizar)
         ↓
    Movimentação
-   (Venda / Doação / Self-service / Descarte)
+   (Venda / Self-service / Descarte)
         ↓
    Aproveitamento
    (Registro auditável)
@@ -106,13 +107,13 @@ Produto em Exposição
 
 ### Classificação de Validade
 
-| Status | Regra | Visual |
-|---|---|---|
-| 🔴 VENCIDO | Menos de 0 dias | Vermelho |
-| 🔴 VENCE HOJE | 0 dias | Vermelho |
-| 🟠 PRÓXIMO DO VENCIMENTO | 1 a 7 dias | Laranja |
-| 🟡 ATENÇÃO | 8 a 15 dias | Amarelo |
-| 🟢 NORMAL | Mais de 15 dias | Verde |
+| Status                   | Regra           | Visual   |
+| ------------------------ | --------------- | -------- |
+| 🔴 VENCIDO               | Menos de 0 dias | Vermelho |
+| 🔴 VENCE HOJE            | 0 dias          | Vermelho |
+| 🟠 PRÓXIMO DO VENCIMENTO | 1 a 7 dias      | Laranja  |
+| 🟡 ATENÇÃO               | 8 a 15 dias     | Amarelo  |
+| 🟢 NORMAL                | Mais de 15 dias | Verde    |
 
 ---
 
@@ -121,12 +122,15 @@ Produto em Exposição
 A inteligência artificial foi utilizada em três frentes dentro do FreshFlow:
 
 ### 1. Estruturação do Prompt Mestre
+
 A IA auxiliou na construção e refinamento do **Prompt Mestre V1.0** — documento que define toda a identidade do projeto: regras de negócio, arquitetura, escopo, metodologia de desenvolvimento e critérios de aceitação do MVP.
 
 ### 2. Sugestões Inteligentes de Preço
+
 A IA (Gemini API / OpenAI) analisa cada lote e propõe um preço promocional justificado, respeitando os limites comerciais definidos pela equipe.
 
 **Entrada enviada à IA:**
+
 ```json
 {
   "productId": "FRI-001",
@@ -135,18 +139,19 @@ A IA (Gemini API / OpenAI) analisa cada lote e propõe um preço promocional jus
   "dataValidade": "2026-11-20",
   "diasRestantes": 2,
   "quantidadeDisponivel": 8,
-  "precoOriginal": 24.90,
-  "precoAtual": 24.90,
-  "precoMinimo": 12.00
+  "precoOriginal": 24.9,
+  "precoAtual": 24.9,
+  "precoMinimo": 12.0
 }
 ```
 
 **Resposta estruturada da IA:**
+
 ```json
 {
   "productId": "FRI-001",
   "lotId": "LOTE-FRI-001",
-  "suggestedPrice": 18.00,
+  "suggestedPrice": 18.0,
   "discountPercent": 28,
   "reason": "Validade próxima e quantidade disponível elevada. Recomenda-se acelerar o giro.",
   "status": "PENDING"
@@ -156,6 +161,7 @@ A IA (Gemini API / OpenAI) analisa cada lote e propõe um preço promocional jus
 > ⚠️ A IA **nunca** aplica preços automaticamente. Toda sugestão passa pela aprovação obrigatória da gerente.
 
 ### 3. Geração de Código (Assistida)
+
 A IA auxiliou na geração dos componentes React, estrutura de dados mock, regras de negócio centralizadas e integração com Make.com — sempre sob supervisão e aprovação do Tech Lead.
 
 ---
@@ -164,21 +170,23 @@ A IA auxiliou na geração dos componentes React, estrutura de dados mock, regra
 
 ### MVP Funcional — Loja Piloto 01 (Carrefort)
 
-| Módulo | Descrição |
-|---|---|
-| 📊 **Dashboard** | Painel gerencial com 13 indicadores dinâmicos, gráficos de desperdício evitado por dia, distribuição por urgência, prévia FEFO e comparativo recuperado vs. descartado |
-| 📦 **Gestão de Validades & Lotes** | Tabela FEFO inteligente com filtros por categoria e urgência, busca por produto/marca/lote, cadastro, edição e ações em lote |
-| 🤖 **Módulo de IA** | Sugestões de preço com fluxo completo de aprovação, rejeição e personalização pela gerente |
-| 📋 **Histórico de Movimentações** | Registro auditável de todas as operações com filtros por período, produto, categoria e tipo |
-| 🏪 **Vitrine Última Hora** | Consulta interna de produtos com ofertas aprovadas (apenas para uso interno da gerente) |
-| ⚙️ **Automação Make.com** | Monitoramento agendado + integração Google Sheets + motor de IA |
+| Módulo                             | Descrição                                                                                                                                                              |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 📊 **Dashboard**                   | Painel gerencial com 13 indicadores dinâmicos, gráficos de desperdício evitado por dia, distribuição por urgência, prévia FEFO e comparativo recuperado vs. descartado |
+| 📦 **Gestão de Validades & Lotes** | Tabela FEFO inteligente com filtros por categoria e urgência, busca por produto/marca/lote, cadastro, edição e ações em lote                                           |
+| 🤖 **Módulo de IA**                | Sugestões de preço com fluxo completo de aprovação, rejeição e personalização pela gerente                                                                             |
+| 📋 **Histórico de Movimentações**  | Registro auditável de todas as operações com filtros por período, produto, categoria e tipo                                                                            |
+| 🏪 **Vitrine Última Hora**         | Consulta interna de produtos com ofertas aprovadas (apenas para uso interno da gerente)                                                                                |
+| ⚙️ **Automação Make.com**          | Monitoramento agendado + integração Google Sheets + motor de IA                                                                                                        |
 
 ### Dados Demonstrativos
+
 - **51 produtos alimentícios fictícios** organizados em 3 categorias
 - 17 produtos de Padaria · 17 de Frios e Laticínios · 17 de Hortifrúti
 - Datas variadas cobrindo todos os cenários de validade (vencido → >15 dias)
 
 ### Integrações Previstas
+
 - **Google Sheets** → Fonte principal de dados operacionais (3 abas: Produtos, SugestoesIA, Movimentacoes)
 - **Make.com** → Orquestrador dos cenários automatizados
 - **Gemini API / OpenAI** → Motor de sugestões inteligentes de preço
@@ -192,25 +200,26 @@ O projeto foi construído com auxílio de IA utilizando o **Prompt Mestre V1.0**
 > 📂 O Prompt Mestre completo está em [`docs/prompt-log/prompt-ai-builder.md`](./docs/prompt-log/prompt-ai-builder.md)
 
 **Princípio fundamental:**
-> *"A IA acelera a construção do produto, mas as decisões de negócio, validações e aprovações continuam sob responsabilidade da equipe."*
+
+> _"A IA acelera a construção do produto, mas as decisões de negócio, validações e aprovações continuam sob responsabilidade da equipe."_
 
 O prompt define, em 22 seções:
 
-| Seção | Conteúdo |
-|---|---|
-| 1 | Identidade e papel da IA |
-| 2 | Contexto do projeto |
-| 3 | Objetivo do produto |
-| 4 | Escopo do MVP |
-| 5 | Tecnologias obrigatórias |
-| 6 | Estrutura das telas |
-| 7 | Dados demonstrativos |
-| 8 | Regras de negócio |
-| 9–10 | Automação Make.com e Módulo de aprovação |
-| 11–13 | Movimentações, Google Sheets e comunicação React↔Make |
-| 14 | Design e UX |
-| 15–16 | Arquitetura e segurança |
-| 17–18 | Escopo fora do MVP e critérios de aceitação |
+| Seção | Conteúdo                                                        |
+| ----- | --------------------------------------------------------------- |
+| 1     | Identidade e papel da IA                                        |
+| 2     | Contexto do projeto                                             |
+| 3     | Objetivo do produto                                             |
+| 4     | Escopo do MVP                                                   |
+| 5     | Tecnologias obrigatórias                                        |
+| 6     | Estrutura das telas                                             |
+| 7     | Dados demonstrativos                                            |
+| 8     | Regras de negócio                                               |
+| 9–10  | Automação Make.com e Módulo de aprovação                        |
+| 11–13 | Movimentações, Google Sheets e comunicação React↔Make           |
+| 14    | Design e UX                                                     |
+| 15–16 | Arquitetura e segurança                                         |
+| 17–18 | Escopo fora do MVP e critérios de aceitação                     |
 | 19–22 | Metodologia, prompt log, regras de conduta e resultado esperado |
 
 ---
@@ -218,21 +227,23 @@ O prompt define, em 22 seções:
 ## 🧰 Stack Tecnológica
 
 ### Front-end
-| Tecnologia | Uso |
-|---|---|
-| React 18 | Framework principal (SPA) |
-| JavaScript / JSX | Linguagem base |
-| CSS Modularizado | Estilização por componente |
+
+| Tecnologia           | Uso                                          |
+| -------------------- | -------------------------------------------- |
+| React 18             | Framework principal (SPA)                    |
+| JavaScript / JSX     | Linguagem base                               |
+| CSS Modularizado     | Estilização por componente                   |
 | useState / useEffect | Gerenciamento de estado e efeitos colaterais |
-| HTML Semântico | Acessibilidade e estrutura |
+| HTML Semântico       | Acessibilidade e estrutura                   |
 
 ### Dados & Integração
-| Tecnologia | Uso |
-|---|---|
-| Google Sheets | Fonte principal de dados operacionais |
-| Make.com | Automação e integração de serviços |
-| Gemini API / OpenAI API | Sugestões inteligentes de preço |
-| mock.js | Dados fictícios para demonstração |
+
+| Tecnologia              | Uso                                   |
+| ----------------------- | ------------------------------------- |
+| Google Sheets           | Fonte principal de dados operacionais |
+| Make.com                | Automação e integração de serviços    |
+| Gemini API / OpenAI API | Sugestões inteligentes de preço       |
+| mock.js                 | Dados fictícios para demonstração     |
 
 ---
 
@@ -287,6 +298,7 @@ freshflow/
 ## 🚀 Como Executar
 
 ### Pré-requisitos
+
 - Node.js 18+
 - npm ou yarn
 
@@ -294,7 +306,7 @@ freshflow/
 
 ```bash
 # Clone o repositório
-git clone https://github.com/[SEU_REPOSITORIO]/freshflow.git
+git clone https://github.com/dgarauj04/FreshFlow
 
 # Acesse o diretório
 cd freshflow
@@ -332,7 +344,7 @@ VITE_GOOGLE_SHEETS_URL=http://[SUA_URL_AQUI]
       <br />
       <sub>🔍 QA & Privacidade</sub>
       <br /><br />
-      <a href="https://github.com/[GITHUB_EMILLY]">
+      <a href="https://github.com/EmillyTheury">
         <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
       </a>
       &nbsp;
@@ -364,7 +376,7 @@ VITE_GOOGLE_SHEETS_URL=http://[SUA_URL_AQUI]
       <br />
       <sub>📋 Product Owner</sub>
       <br /><br />
-      <a href="https://github.com/[GITHUB_ISABELLA]">
+      <a href="https://github.com/bella-souza">
         <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
       </a>
       &nbsp;
@@ -380,7 +392,7 @@ VITE_GOOGLE_SHEETS_URL=http://[SUA_URL_AQUI]
       <br />
       <sub>🤖 AI Builder</sub>
       <br /><br />
-      <a href="https://github.com/[GITHUB_VITORIA]">
+      <a href="https://github.com/mariavitoriabenaglia">
         <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
       </a>
       &nbsp;
@@ -393,13 +405,12 @@ VITE_GOOGLE_SHEETS_URL=http://[SUA_URL_AQUI]
   </tr>
 </table>
 
-> 📌 Substitua os placeholders `[GITHUB_NOME]` e `[LINKEDIN_NOME]` pelos links reais de cada membro.
-
 ---
 
 ## 📌 Escopo do MVP
 
 ### ✅ Incluído nesta versão
+
 - Aplicação web administrativa (uso interno)
 - Loja piloto única (Carrefort — Loja 01)
 - Dados demonstrativos claramente identificados
@@ -407,6 +418,7 @@ VITE_GOOGLE_SHEETS_URL=http://[SUA_URL_AQUI]
 - Integração Google Sheets + Make.com + Gemini/OpenAI
 
 ### 🔮 Versões Futuras
+
 - Loja pública para consumidores
 - Checkout e pagamentos
 - Gestão de múltiplas lojas (40 lojas)
@@ -441,6 +453,6 @@ VITE_GOOGLE_SHEETS_URL=http://[SUA_URL_AQUI]
 
 **FreshFlow** · Desafio 04 — KODIE Academy · Briefing Carrefort Supermercados
 
-*Desenvolvido com 💚 pelo Time FreshFlow*
+_Desenvolvido com 💚 pelo Time FreshFlow_
 
 </div>

@@ -28,7 +28,6 @@ export default function LotModal({
     currentCategoryFilter !== 'Todas' ? currentCategoryFilter : 'Padaria';
 
   const [nome, setNome] = useState('');
-  const [marca, setMarca] = useState('Padaria Carrefort');
   const [categoria, setCategoria] = useState(initialCategory);
   const [lote, setLote] = useState('LOTE-PAD-031');
   const [quantidadeInicial, setQuantidadeInicial] = useState(40);
@@ -113,7 +112,6 @@ export default function LotModal({
     setIsSubmitting(true);
     await onSubmit({
       nome,
-      marca,
       categoria,
       lote,
       quantidadeInicial,
@@ -209,21 +207,8 @@ export default function LotModal({
               )}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold text-[#184E77] mb-1.5">
-                  Marca *
-                </label>
-                <input
-                  type="text"
-                  value={marca}
-                  onChange={(e) => setMarca(e.target.value)}
-                  placeholder="Ex.: Padaria Carrefort"
-                  className="w-full h-10 px-3.5 text-sm bg-white border border-[#E2E8F0] rounded-lg focus:border-[#1A759F] focus:outline-none"
-                />
-              </div>
-
-              <div>
+            <div className="grid grid-cols-1 sm:grid-cols-1 w-full ">
+              <div className="w-full">
                 <label className="block text-xs font-semibold text-[#184E77] mb-1.5">
                   Categoria *
                 </label>

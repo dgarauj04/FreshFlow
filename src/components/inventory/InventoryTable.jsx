@@ -129,7 +129,7 @@ export default function InventoryTable({
             className="px-4 py-2 bg-[#34A0A4] hover:bg-[#2e8f93] text-white text-xs font-bold rounded-lg shadow-xs flex items-center gap-1.5 transition-colors disabled:opacity-50"
           >
             <Sparkles className={`w-3.5 h-3.5 text-[#D9ED92] ${aiSimulationLoading ? 'animate-spin' : ''}`} />
-            {aiSimulationLoading ? 'Analisando...' : 'Rodar Simulação IA'}
+            {aiSimulationLoading ? 'Analisando...' : 'Analisar com IA'}
           </button>
         </div>
       </div>

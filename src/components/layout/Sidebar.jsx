@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  LayoutDashboard,
-  ClipboardList,
-  History,
-  Store,
-  Leaf,
-  ChevronLeft,
-  ChevronRight,
-  X,
-} from 'lucide-react';
+import { LayoutDashboard, ClipboardList, History, Store, Leaf, ChevronLeft, ChevronRight, X, CircleUserRound } from 'lucide-react';
+import logoFreshFlow from "../../assets/freshflow-logo.png";
 
 export default function Sidebar({
   activeTab,
@@ -65,8 +57,8 @@ export default function Sidebar({
             }`}
           >
             {/* Ícone/Logo sempre visível */}
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#34A0A4] to-[#D9ED92] flex items-center justify-center shadow-md flex-shrink-0">
-              <Leaf className="w-5 h-5 text-[#184E77] stroke-[2.2]" />
+            <div className="w-14 h-14 rounded-xl  flex items-center justify-center flex-shrink-0">
+              <img src={logoFreshFlow} alt="FreshFlow Logo"  />
             </div>
 
             {/* Texto só na versão expandida */}
@@ -150,19 +142,18 @@ export default function Sidebar({
               /* Avatar compacto */
               <div
                 className="w-9 h-9 rounded-full bg-[#52B69A] text-white flex items-center justify-center font-bold text-xs shadow-inner flex-shrink-0"
-                title="Dona Célia — Gerente de Setor"
+                title="Célia — Gerente de Setor"
               >
-                DC
               </div>
             ) : (
               <>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-[#52B69A] text-white flex items-center justify-center font-bold text-sm shadow-inner flex-shrink-0">
-                    DC
+                    <CircleUserRound size={24} />
                   </div>
                   <div className="overflow-hidden">
                     <h4 className="text-sm font-semibold text-white leading-tight truncate">
-                      Dona Célia
+                      Célia
                     </h4>
                     <p className="text-xs text-[#E2F0F7]/70 leading-tight">
                       Gerente de Setor
@@ -218,9 +209,9 @@ export default function Sidebar({
         <div>
           <div className="h-16 flex items-center justify-between px-5 border-b border-white/10">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#34A0A4] to-[#D9ED92] flex items-center justify-center shadow-md flex-shrink-0">
-                <Leaf className="w-5 h-5 text-[#184E77] stroke-[2.2]" />
-              </div>
+                <div className="w-14 h-14 rounded-xl  flex items-center justify-center flex-shrink-0">
+                  <img src={logoFreshFlow} alt="FreshFlow Logo"  />
+                </div>
               <div>
                 <span className="text-xl font-bold tracking-tight text-white block leading-tight">
                   FreshFlow
@@ -284,10 +275,10 @@ export default function Sidebar({
         <div className="p-4 bg-[#184E77] border-t border-white/10">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[#52B69A] text-white flex items-center justify-center font-bold text-sm shadow-inner flex-shrink-0">
-              DC
+              <CircleUserRound size={24} />
             </div>
             <div className="overflow-hidden">
-              <h4 className="text-sm font-semibold text-white leading-tight truncate">Dona Célia</h4>
+              <h4 className="text-sm font-semibold text-white leading-tight truncate">Célia</h4>
               <p className="text-xs text-[#E2F0F7]/70 leading-tight">Gerente de Setor</p>
             </div>
           </div>

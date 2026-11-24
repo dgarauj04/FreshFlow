@@ -23,7 +23,7 @@ export default function UrgencyDonutChart({ distribuicao }) {
         Distribuição por urgência
       </h3>
 
-      <div className="flex flex-col sm:flex-row items-center justify-around gap-4 my-auto py-2">
+      <div className="flex flex-wrap sm:flex-row items-center justify-around gap-4 my-auto py-2">
         {/* Rosca SVG */}
         <div className="relative w-36 h-36 flex items-center justify-center flex-shrink-0">
           <svg className="w-full h-full transform -rotate-90" viewBox="0 0 140 140">
