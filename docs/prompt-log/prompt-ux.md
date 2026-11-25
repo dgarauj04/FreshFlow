@@ -18,29 +18,151 @@ Documentação do trabalho de design de interface do projeto **FreshFlow**: ferr
 
 | Ferramenta | Finalidade |
 |---|---|
-| **Claude (Anthropic)** | Apoio com IA para estruturar e refinar o **Prompt Mestre de Design** (design system, layout, componentes e dados de mockup) |
-| **[Google Stitch / Figma AI / Banani — ajuste aqui]** | Geração das telas e do wireframe a partir do prompt |
-| **[Figma — ajuste aqui, se usou]** | Refinamento manual das telas, componentes e exportação das imagens |
+| **Claude (Anthropic)** | Apoio com IA para estruturar e refinar o **Prompt Mestre de Design** (design system, cores, layout, componentes e dados de mockup) |
+| **Framer** | Geração das telas do wireframe a partir do prompt de design da ideia do pojeto |
+| **UX Pilot** | Criação do design final com O Prompt Mestre de Design (Componentes, fontes, cores, espaçamentos, ícones e imagens definitivos) |
 
 ---
+# 📝 Prompt utilizado para criação do Wireframe
+
+<details>
+<summary><strong>Clique para expandir o prompt completo</strong></summary>
+
+```markdown
+# SYSTEM ROLE & OBJETIVO DO WIREFRAME
+Atue como um Arquiteto de Informação e UX Designer Sênior. Sua tarefa é gerar os **wireframes estruturais (baixa/média fidelidade)** do sistema web **FreshFlow** (plataforma de gestão de validade FEFO e precificação dinâmica com IA para supermercados).
+
+**RESTRIÇÕES ESTRITAS DE ESTILO (WIREFRAME PURO):**
+* **Sem estética final:** NÃO utilize paleta de cores da marca, gradientes, sombras elaboradas, fotos realistas ou estilos decorativos.
+* **Aparência:** Utilize estritamente **escala de cinza** (branco `#FFFFFF`, cinzas claros `#F4F4F5` / `#E4E4E7`, bordas finas `#A1A1AA` e texto escuro `#18181B`), formas geométricas básicas (retângulos, círculos, linhas), placeholders com "X" ou ícones esquemáticos simples e tipografia padrão sem serifa.
+* **Foco absoluto:** Hierarquia visual, densidade de informação, espaçamento (grid 1440×900 desktop), fluxos de interação e funcionalidade dos componentes. Idioma dos rótulos: **Português (BR)**.
+
+---
+
+# 1. ESTRUTURA GLOBAL (APP SHELL - 1440×900)
+Desenhe um layout estrutural dividido em 3 zonas fixas:
+
+1. **Sidebar Esquerda (Largura 248px, borda direita de 1px):**
+   * **Topo:** Placeholder retangular para Logo + Texto "FreshFlow".
+   * **Menu Vertical (4 itens com ícone esquemático + rótulo, destacando o item ativo com borda/fundo cinza médio):**
+     1. Dashboard
+     2. Gestão de Validades & Lotes
+     3. Histórico de Movimentações
+     4. Vitrine "Última Hora"
+   * **Rodapé da Sidebar:** Bloco de perfil com círculo para avatar ("DC"), texto "Dona Célia · Gerente" e indicador de status "Loja Piloto 01 · Operando".
+
+2. **Header Superior (Altura 64px, borda inferior de 1px, alinhado à direita da sidebar):**
+   * Da esquerda para a direita:
+     * **Breadcrumb:** `FreshFlow / [Nome da Tela Atual]`.
+     * **Campo de Busca:** Input retangular (~320px) com placeholder `"Buscar produto ou lote..."`.
+     * **Controle Segmentado (Filtro de Setor):** 4 botões agrupados (`Todas` [ativo] | `Padaria` | `Frios e Laticínios` | `Hortifrúti`).
+     * **Botão de Ação Primária:** Retângulo sólido escuro com rótulo `"+ Cadastrar Novo Lote"`.
+
+3. **Área Dinâmica Principal (Largura fluida até 1152px, padding 24px):**
+   * Conteúdo variável conforme as 5 telas/estados detalhados abaixo.
+
+---
+
+# 2. TELAS E FLUXOS A SEREM DESENHADOS
+
+## TELA 1: Dashboard (Visão Geral)
+* **Linha 1 — Faixa de 4 Cards de KPI (Grid 4 colunas, clicáveis):**
+  * **Card 1 (Destaque com borda reforçada):** Título "Desperdício Evitado (R$/Semana)", número grande `"R$ 2.847,60"`, tag `"▲ 12% vs. semana anterior"` e espaço para mini gráfico de linha (sparkline).
+  * **Card 2:** "Alimentos Recuperados", número `"412 un."`, subtexto `"R$ 2.847,60 recuperados"`.
+  * **Card 3:** "Atenção Crítica (Hoje/Amanhã)", número `"9 lotes"`, tag de alerta.
+  * **Card 4:** "Sugestões de IA Pendentes", número `"6"`, subtexto `"Aguardando decisão"`.
+* **Linha 2 — Área de Gráficos (Grid assimétrico 2/3 + 1/3):**
+  * **Bloco Esquerdo (2/3):** Box com título "Desperdício evitado por dia (7 dias)", placeholder de gráfico de barras verticais e legenda (`Recuperado` vs. `Descartado`).
+  * **Bloco Direito (1/3):** Box com título "Distribuição por urgência", placeholder de gráfico de rosca (donut) com total no centro e legenda lateral.
+* **Linha 3 — Prévia Operacional:**
+  * Box estruturado contendo uma mini-tabela com os **5 lotes mais urgentes** e link à direita `"Ver todos os lotes →"`.
+* **Rodapé da Área:** Barra horizontal proporcional comparando `"Recuperados (91%)"` vs. `"Descartados (9%)"`.
+
+## TELA 2: Gestão de Validades & Lotes (Tabela FEFO)
+* **Barra de Filtros Rápidos (Chips horizontais acima da tabela):**
+  * `Todos (51)` | `Vencidos (1)` | `Vence Hoje/Amanhã (3)` | `Próximo 2d (2)` | `Monitoramento 5d (2)` | `No Prazo (43)` + botão à direita `"Restaurar ordem FEFO"`.
+* **Toolbar da Tabela:** Checkbox de seleção em lote, contador de itens e barra de ações em massa ocultável (`"X selecionados · Aceitar IA em lote · Descartar"`).
+* **Tabela Estrutural (8 Colunas com cabeçalho fixo):**
+  1. **Status:** Tag retangular/pill com ícone esquemático + texto (`Vencido`, `Vence Hoje`, `Próximo`, `Monitoramento`, `No Prazo`).
+  2. **Produto & Setor:** Título em negrito (ex: `Pão Integral Formato Especial`) + subtexto (`Padaria · Padaria Carrefort`).
+  3. **Lote:** Código `LOTE-PAD-001`.
+  4. **Validade:** Data `17/11/2026` + subtexto `Vence hoje`.
+  5. **Estoque:** Texto `30 / 50 un.` + barra linear simples de progresso abaixo.
+  6. **Preço:** Preço original riscado (quando aplicável) + preço atual em destaque.
+  7. **Sugestão IA:** Tag destacada com borda tracejada ou cinza médio (`R$ 8,40 (-30%)`) + link `"Por quê?"` (que abre popover explicativo). Para itens vencidos ou no prazo, exibir `"—"` ou `"Bloqueado"`.
+  8. **Ações Rápidas:** Grupo compacto com 3 botões pequenos (`[Aceitar]`, `[Personalizar]`, `[Rejeitar]`) + botão dropdown `[⋯ Destino]` (que abre menu vertical com: *Venda Normal, Aplicar Desconto, Self-Service, Descartar*).
+* *Nota de Estado:* Representar também o **Popover inline de "Personalizar Preço"** (aberto sobre uma linha), contendo input de `Preço (R$)`, input de `Desconto (%)`, preview do cálculo e botões `[Cancelar]` e `[Confirmar]`.
+
+## TELA 3: Histórico de Movimentações
+* **Barra de Filtros:** Dropdowns para `Período`, `Tipo de Ação`, `Operador` + botão `[Exportar Relatório]`.
+* **Tabela de Auditoria (6 Colunas):**
+  * `Data/Hora` | `Produto` | `Lote` | `Ação Executada` (tag textual: *Preço alterado pela IA, Preço personalizado, Sugestão rejeitada, Venda normal, Self-Service, Descartado*) | `Operador` (`Dona Célia`) | `Impacto Financeiro` (`+ R$ 96,60` ou `- R$ 75,60`).
+* **Rodapé:** Controles simples de paginação (`< 1 2 3 >`).
+
+## TELA 4: Vitrine "Última Hora" (Visão do Consumidor)
+* **Banner Superior:** Faixa discreta no topo `"Pré-visualização do Cliente"` + bloco de cabeçalho com título `"Ofertas da Última Hora"`, subtítulo explicativo e chips de filtro por categoria (`Todas`, `Padaria`, `Frios e Laticínios`, `Hortifrúti`).
+* **Grid de Produtos (4 colunas):**
+  * Desenhar 4 a 6 cards esquemáticos. Cada card contém:
+    * Caixa retangular com "X" (placeholder de foto do produto) + tag no canto superior direito `"-30%"`.
+    * Nome do produto e marca.
+    * Preço antigo riscado (`R$ 12,00`) + Preço promocional grande (`R$ 8,40`).
+    * Rodapé do card com ícone de relógio `"Válido até 17/11"` e `"Restam 30 un."`.
+
+## OVERLAY / MODAL: Cadastrar Novo Lote
+* Desenhar como janela centralizada (largura 640px) sobre fundo escurecido/desfocado:
+  * **Header:** Título `"Cadastrar Novo Lote"` + botão fechar `[X]`.
+  * **Seção 1 (Identificação):** Input `Nome do produto *`, Seletor segmentado `Setor *` (3 opções), Input `Código do lote *` + botão `[Gerar]`.
+  * **Seção 2 (Quantidade e Prazos):** Stepper numérico `Quantidade inicial *` (`[-] 40 [+]`), Date picker `Data de exposição *`, Date picker `Data de validade *` com chips de atalho abaixo (`Hoje`, `+2d`, `+5d`, `+7d`, `+15d`) + Tag de prévia dinâmica de status ao lado.
+  * **Seção 3 (Precificação):** Inputs lado a lado para `Preço original (R$) *`, `Desconto inicial (%)` e campo bloqueado `Preço promocional calculado`.
+  * **Bloco de Resumo:** Caixa retangular informando `"Valor total em exposição: R$ 380,00"` + nota informativa sobre análise automática da IA.
+  * **Rodapé do Modal:** Botões `[Cancelar]`, `[Salvar e cadastrar outro]` e `[Cadastrar Lote].
+  ```
+
+</details>
 
 ## 🎯 Objetivo do prompt
 
-Criar uma **especificação visual e estrutural única e agnóstica de ferramenta**, capaz de gerar a interface completa do FreshFlow em qualquer gerador de UI com IA, mantendo consistência entre as telas.
+Gerar os **wireframes estruturais (baixa e média fidelidade)** do FreshFlow antes da definição da identidade visual, para validar com a equipe a **organização da informação, a hierarquia e os fluxos de interação** sem a influência de cores ou estilos decorativos.
 
-O prompt foi pensado para:
+O prompt foi construído para:
 
-- Traduzir o problema do negócio (desperdício de perecíveis por controle manual de validade) em decisões de interface.
-- Priorizar a persona **Dona Célia, gerente de setor**, que precisa auditar validades, decidir sobre sugestões de preço da IA e registrar destinos de lotes com poucos cliques.
-- Definir **design tokens exatos** (cores, tipografia, espaçamentos, raios e sombras) para garantir identidade visual consistente.
-- Estruturar um **App Shell** (sidebar fixa, header global e área dinâmica) e as telas principais: Dashboard, Gestão de Validades e Lotes (tabela FEFO), Histórico de Movimentações, Vitrine "Última Hora" e o modal de cadastro de lote.
-- Detalhar **micro-interações** da decisão da IA (Aceitar, Personalizar e Rejeitar) e os estados dos componentes.
-- Fornecer **dados de mockup realistas em português** (Padaria, Frios e Laticínios, Hortifrúti), para que as telas não nasçam com texto genérico.
-- Responder visualmente à pergunta-chave do pitch: *"Quanto desperdício (em R$ e unidades) foi evitado por semana nesta loja?"*
+- **Isolar a estrutura do estilo:** a IA foi instruída a usar apenas escala de cinza, formas geométricas básicas, placeholders com "X" e tipografia sem serifa, sem paleta de marca, gradientes, sombras ou fotos.
+- **Definir um App Shell consistente** em 1440×900, com sidebar fixa de 248px, header de 64px e área dinâmica de até 1152px.
+- **Cobrir as telas essenciais do MVP:** Dashboard, Gestão de Validades & Lotes (tabela FEFO), Histórico de Movimentações, Vitrine "Última Hora" e o modal de Cadastrar Novo Lote.
+- **Detalhar a funcionalidade dos componentes**, como KPIs clicáveis, filtros por urgência, ações em lote, menu de destino operacional, popover de "Personalizar Preço" e prévia dinâmica de status de validade.
+- **Priorizar a persona Dona Célia**, gerente de setor, que precisa auditar validades e decidir sobre as sugestões da IA com poucos cliques.
+- **Usar dados realistas em português** (valores, lotes, datas e contagens) para que o wireframe já mostre a densidade real de informação.
 
 ---
 
-## 📝 Prompt utilizado
+## 🤖 O que a IA entregou
+
+A partir do prompt, a ferramenta gerou os wireframes em escala de cinza com:
+
+- **App Shell global:** sidebar fixa com logo placeholder, 4 itens de navegação e bloco de perfil da Dona Célia; header com breadcrumb, busca, filtro segmentado por setor e botão "+ Cadastrar Novo Lote".
+- **Dashboard:** 4 cards de KPI (com destaque para Desperdício Evitado), áreas de gráfico de barras e rosca, mini-tabela com os 5 lotes mais urgentes e barra comparando Recuperados e Descartados.
+- **Gestão de Validades & Lotes:** chips de filtro por urgência com contagem, toolbar com seleção em lote, tabela FEFO de 8 colunas (status, produto e setor, lote, validade, estoque, preço, sugestão da IA e ações rápidas) e o popover de "Personalizar Preço".
+- **Histórico de Movimentações:** filtros, tabela de auditoria com 6 colunas e paginação.
+- **Vitrine "Última Hora":** faixa de pré-visualização, filtros por categoria e grid de cards com placeholder de imagem, selo de desconto, preço riscado e validade.
+- **Modal de Cadastrar Novo Lote:** formulário dividido em 3 seções, chips de atalho de validade, prévia de status, bloco de resumo e botões de ação.
+
+---
+
+## 🖼️ Imagens do Wireframe
+### Wireframe do Dashboard
+![Wireframe Dashboard](/docs/design/wireframe-dashboard.png)
+
+### Wireframe da Gestão de Validades e Lotes (FEFO)
+![Wireframe Lotes](/docs/design/wireframe-lotes.png)
+
+### Wireframe Cadastro de Lote / Produto
+![Wireframe Cadastro de Lotes](/docs/design/wireframe-cadastro-lote.png)
+
+---
+</br></br>
+
+
+# 📝 Prompt Mestre utilizado para criação do Design final:
 
 <details>
 <summary><strong>Clique para expandir o prompt completo</strong></summary>
@@ -307,11 +429,27 @@ Ao salvar, o sistema define: quantidade disponível = quantidade inicial; vendid
 **KPIs do dashboard (valores de exibição):** Desperdício Evitado R$ 2.847,60/semana · Alimentos Recuperados 412 un. · Atenção Crítica 9 lotes · Sugestões de IA Pendentes 6 · Taxa de aproveitamento 91% · Descartado na semana R$ 281,40 (23 un.).
 
 **Regras de cálculo a refletir na UI:** "Alimentos Recuperados" conta apenas itens vendidos com desconto, vendidos normalmente ou enviados ao self-service (descartados nunca entram). "Valor Comercial Recuperado" = quantidade aproveitada × preço original unitário.
+
 ```
 
 </details>
 
+## 🎯 Objetivo do prompt
+
+Criar uma **especificação visual e estrutural única e agnóstica de ferramenta**, capaz de gerar a interface completa do FreshFlow em qualquer gerador de UI com IA, mantendo consistência entre as telas.
+
+O prompt foi pensado para:
+
+- Traduzir o problema do negócio (desperdício de perecíveis por controle manual de validade) em decisões de interface.
+- Priorizar a persona **Dona Célia, gerente de setor**, que precisa auditar validades, decidir sobre sugestões de preço da IA e registrar destinos de lotes com poucos cliques.
+- Definir **design tokens exatos** (cores, tipografia, espaçamentos, raios e sombras) para garantir identidade visual consistente.
+- Estruturar um **App Shell** (sidebar fixa, header global e área dinâmica) e as telas principais: Dashboard, Gestão de Validades e Lotes (tabela FEFO), Histórico de Movimentações, Vitrine "Última Hora" e o modal de cadastro de lote.
+- Detalhar **micro-interações** da decisão da IA (Aceitar, Personalizar e Rejeitar) e os estados dos componentes.
+- Fornecer **dados de mockup realistas em português** (Padaria, Frios e Laticínios, Hortifrúti), para que as telas não nasçam com texto genérico.
+- Responder visualmente à pergunta-chave do pitch: *"Quanto desperdício (em R$ e unidades) foi evitado por semana nesta loja?"*
+
 ---
+
 
 ## 🤖 O que a IA entregou
 
@@ -322,8 +460,6 @@ A partir do prompt, a ferramenta de geração de UI produziu:
 - **Tela de Gestão de Validades e Lotes** com tabela ordenada por FEFO, badges de urgência (Vencido, Vence Hoje, Próximo, Monitoramento e No Prazo), coluna de sugestão da IA e ações rápidas por linha (Aceitar IA, Personalizar, Rejeitar e menu de destino operacional).
 - **Modal de cadastro de lote** com formulário dividido em Identificação, Quantidade e Prazos e Precificação, incluindo prévia de status de validade, cálculo automático do preço promocional e resumo do valor em exposição.
 - **Aplicação do design system** (paleta em tons de verde e azul, tipografia Inter, raios e sombras), com dados de mockup em português.
-
-> ✏️ *Ajuste esta lista conforme o que a ferramenta realmente gerou na sua execução.*
 
 ---
 
@@ -341,19 +477,16 @@ Ajustes feitos por mim sobre o resultado inicial da IA e sobre o próprio prompt
 
 ---
 
-## 🖼️ Imagens do design
-
-### Wireframe do site
-![Wireframe do FreshFlow](./docs/design/wireframe.png)
+## 🖼️ Imagens do design final
 
 ### Dashboard de indicadores
-![Dashboard do FreshFlow](./docs/design/dashboard.png)
+![Dashboard do FreshFlow](/docs/design/design-dashboard.png)
 
 ### Gestão de Validades e Lotes (FEFO)
-![Tabela FEFO do FreshFlow](./docs/design/gestao-lotes-fefo.png)
+![Tabela FEFO do FreshFlow](/docs/design/design-gestão-lote.png)
 
 ### Cadastro de Lote / Produto
-![Modal de cadastro de lote do FreshFlow](./docs/design/cadastro-lote.png)
+![Modal de cadastro de lote do FreshFlow](/docs/design/design-cadastro-lote.png)
 
 ---
 
