@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌿 FreshFlow
+![logo-freshflow](/public/freshflow-favicon.png)
 
 ### _Inteligência que movimenta, tecnologia que evita desperdícios._
 
@@ -167,7 +167,6 @@ A IA auxiliou na geração dos componentes React, estrutura de dados mock, regra
 ---
 
 ## 🛠️ O que Criamos
-
 ### MVP Funcional — Loja Piloto 01 (Carrefort)
 
 | Módulo                             | Descrição                                                                                                                                                              |
@@ -266,6 +265,7 @@ Google Sheets      Gemini / OpenAI
 freshflow/
 ├── public/
 ├── src/
+│   ├── assets/
 │   ├── components/
 │   │   ├── layout/            # Sidebar, Header, Layout principal
 │   │   ├── dashboard/         # Cards, gráficos e indicadores
@@ -288,7 +288,10 @@ freshflow/
 │   │   ├── prompt-tech.md
 │   │   ├── prompt-qa.md
 │   │   └── prompt-ai-builder.md
-│   └── assets/
+│   ├── automacao/
+│   │   ├── arquitetura-make-sheets.md
+│   │   └── prompt-analise-pecos.md    
+│   └── design/                        # Imagens dos Wireframes e Design finais do projeto
 ├── .env.example
 └── README.md
 ```
