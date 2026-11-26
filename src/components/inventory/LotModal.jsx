@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   X,
-  Package,
+  PackagePlus,
   Wand2,
   Minus,
   Plus,
@@ -141,10 +141,10 @@ export default function LotModal({
     >
       <div className="bg-white rounded-2xl shadow-popover max-w-2xl w-full max-h-[92vh] flex flex-col overflow-hidden border border-[#E2E8F0] animate-in zoom-in-95 duration-200 my-auto">
         {/* Cabeçalho Fiel à Imagem 1 */}
-        <div className="h-18 px-6 border-b border-[#E2E8F0] flex items-center justify-between bg-white flex-shrink-0">
+        <div className="h-18 p-4 border-b border-[#E2E8F0] flex items-center justify-between bg-white flex-shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-[#D9ED92] flex items-center justify-center text-[#184E77] shadow-xs">
-              <Package className="w-5 h-5 stroke-[2.2]" />
+              <PackagePlus className="w-5 h-5 stroke-[2.2]" />
             </div>
             <div>
               <h2 className="text-lg font-bold text-[#184E77] leading-tight">
@@ -481,14 +481,14 @@ export default function LotModal({
         </div>
 
         {/* Rodapé Fixo Fiel à Imagem 1 */}
-        <div className="h-18 px-6 bg-[#F8FAFC] border-t border-[#E2E8F0] flex items-center justify-between flex-shrink-0">
+        <div className="h-18 p-4 bg-[#F8FAFC] border-t border-[#E2E8F0] flex items-center justify-between flex-shrink-0">
           <span className="text-xs text-[#94A3B8]">* Campos obrigatórios</span>
 
           <div className="flex items-center gap-2.5">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-semibold text-[#475569] hover:bg-[#E2E8F0] rounded-lg transition-colors border border-[#E2E8F0]"
+              className="px-4 py-2 text-xs font-semibold text-[#7b5454] hover:bg-[#f9c6c6] rounded-lg transition-colors border-2 border-[#e7cdcd]"
             >
               Cancelar
             </button>
@@ -496,7 +496,7 @@ export default function LotModal({
               type="button"
               onClick={() => handleSubmit(true)}
               disabled={isSubmitting}
-              className="px-4 py-2 text-xs font-semibold text-[#168AAD] hover:bg-[#E0F2FE] rounded-lg transition-colors border border-[#BAE6FD]"
+              className="px-4 py-2 text-xs font-semibold text-[#168AAD] hover:bg-[#E0F2FE] rounded-lg transition-colors border-2 border-[#BAE6FD]"
             >
               Salvar e cadastrar outro
             </button>
