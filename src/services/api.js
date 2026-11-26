@@ -141,7 +141,7 @@ export const apiService = {
       precoFinal: precoAprovado,
       descontoPercentual: desconto,
       decisao: 'APROVADA',
-      decididoPor: 'Dona Célia',
+      decididoPor: ' Célia',
       dataDecisao: new Date().toISOString(),
     };
     return await callMakeWebhook('aprovar-sugestao', payload);
@@ -155,7 +155,7 @@ export const apiService = {
       productId,
       lotId,
       decisao: 'REJEITADA',
-      decididoPor: 'Dona Célia',
+      decididoPor: ' Célia',
       dataDecisao: new Date().toISOString(),
     };
     return await callMakeWebhook('rejeitar-sugestao', payload);
@@ -171,7 +171,7 @@ export const apiService = {
       precoFinal: novoPreco,
       descontoPercentual: novoDesconto,
       decisao: 'PERSONALIZADA',
-      decididoPor: 'Dona Célia',
+      decididoPor: ' Célia',
       dataDecisao: new Date().toISOString(),
     };
     return await callMakeWebhook('personalizar-preco', payload);
@@ -185,7 +185,7 @@ export const apiService = {
       ...movement,
       id: `MOV-${Date.now().toString().slice(-6)}`,
       dataHora: new Date().toISOString(),
-      responsavel: 'Dona Célia',
+      responsavel: ' Célia',
       loja: 'Loja Piloto 01 — Carrefort',
     };
     const res = await callMakeWebhook('registrar-movimentacao', payload);

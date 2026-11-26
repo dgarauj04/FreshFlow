@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Toast from './Toast';
+import { ChartColumnBig, Store, ClipboardClock, Package } from 'lucide-react';
 
 export default function AppShell({
   activeTab,
@@ -87,12 +88,14 @@ export default function AppShell({
         aria-label="Navegação inferior"
       >
         {[
-          { id: 'dashboard',  label: 'Dashboard',  emoji: '📊' },
-          { id: 'inventory',  label: 'Validades',   emoji: '📦' },
-          { id: 'movements',  label: 'Histórico',   emoji: '📋' },
-          { id: 'offers',     label: 'Vitrine',     emoji: '🏪' },
+          { id: 'dashboard',  label: 'Dashboard',  icone: ChartColumnBig },
+          { id: 'inventory',  label: 'Validades',   icone: Package },
+          { id: 'movements',  label: 'Histórico',   icone: ClipboardClock },
+          { id: 'offers',     label: 'Vitrine',     icone: Store },
         ].map((item) => {
           const isActive = activeTab === item.id;
+          const Icon = item.icone;
+
           return (
             <button
               key={item.id}
@@ -105,7 +108,7 @@ export default function AppShell({
                   : 'text-[#94A3B8] hover:text-[#475569]'
               }`}
             >
-              <span className="text-lg leading-none">{item.emoji}</span>
+              <Icon className="text-lg leading-none" size={20} />
               <span className={`text-[10px] font-semibold ${isActive ? 'text-[#168AAD]' : 'text-[#94A3B8]'}`}>
                 {item.label}
               </span>

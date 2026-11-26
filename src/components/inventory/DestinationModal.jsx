@@ -45,12 +45,6 @@ export default function DestinationModal({
       disabled: isExpired,
     },
     {
-      id: 'doacao',
-      label: 'Doação para Entidade',
-      desc: 'Destinado a instituições sociais cadastradas',
-      disabled: isExpired,
-    },
-    {
       id: 'descarte',
       label: 'Descarte Sanitário',
       desc: 'Remoção e perda sanitária obrigatória',
@@ -104,7 +98,7 @@ export default function DestinationModal({
               <AlertTriangle className="w-5 h-5 flex-shrink-0" />
               <div>
                 <span className="font-bold block">Produto Vencido!</span>
-                Por normas de segurança alimentar, produtos vencidos estão estritamente bloqueados para venda, doação ou self-service. Apenas o <strong>Descarte</strong> é permitido.
+                Por normas de segurança alimentar, produtos vencidos estão estritamente bloqueados para venda ou self-service. Apenas o <strong>Descarte</strong> é permitido.
               </div>
             </div>
           )}
